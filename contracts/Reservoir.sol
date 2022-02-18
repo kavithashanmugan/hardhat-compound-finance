@@ -53,10 +53,10 @@ contract Reservoir {
     uint blockNumber_ = block.number;
 
     // Next, calculate intermediate values
-    uint dripTotal_ = mul(dripRate_, blockNumber_ - dripStart_, "dripTotal overflow");
-    uint deltaDrip_ = sub(dripTotal_, dripped_, "deltaDrip underflow");
-    uint toDrip_ = min(reservoirBalance_, deltaDrip_);
-    uint drippedNext_ = add(dripped_, toDrip_, "tautological");
+    uint dripTotal_ = mul(dripRate_, blockNumber_ - dripStart_, "dripTotal overflow");//driprate*(blockrate-dripstart)
+    uint deltaDrip_ = sub(dripTotal_, dripped_, "deltaDrip underflow");//dripTotal-dripped
+    uint toDrip_ = min(reservoirBalance_, deltaDrip_);//
+    uint drippedNext_ = add(dripped_, toDrip_, "tautological");//dripped+todrip
 
     // Finally, write new `dripped` value and transfer tokens to target
     dripped = drippedNext_;

@@ -44,6 +44,7 @@ interface GovernorBravoInterface {
     function getReceipt(uint proposalId, address voter) external view returns (Receipt memory);
 }
 
+//it is used for easy fetching of data from off chain, for example, the COMP accrued for an account
 contract CompoundLens {
     struct CTokenMetadata {
         address cToken;
